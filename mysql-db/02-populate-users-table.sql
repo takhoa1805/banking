@@ -1,0 +1,3 @@
+USE DBMS;
+INSERT INTO users VALUES(1,"User 1");
+INSERT INTO users VALUES(2,"User 2");
