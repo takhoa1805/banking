@@ -17,6 +17,7 @@ const option: DataSourceOptions & SeederOptions = {
         __dirname + 'src/modules/**/*.view-entity{.ts,.js}',
       ], 
     migrations: ['src/migrations/*{.ts,.js}'],
+    migrationsRun: false,
 }
 
 export const dataSource = new DataSource(option);
