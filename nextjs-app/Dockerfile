@@ -1,15 +1,15 @@
-FROM node:alpine
+# FROM node:alpine
 
-RUN mkdir -p /app
+# RUN mkdir -p /app
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY package*.json /app
+# COPY package*.json /app
 
-RUN yarn install
+# RUN yarn install
 
-COPY . /app
+# COPY . /app
 
-EXPOSE 4000
+# EXPOSE 4000
 
-CMD ["yarn", "dev"]
+# CMD ["yarn", "dev"]
