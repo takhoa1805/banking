@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 @Module({
   imports: [
     ConfigModule.forRoot({
+      isGlobal: true,
       envFilePath: '../.env',
     }),
     TypeOrmModule.forRootAsync({
@@ -20,7 +21,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
         username: configService.get<string>('MYSQLDB_USER'),
         password: configService.get<string>('MYSQLDB_PASSWORD'),
         database: configService.get<string>('MYSQLDB_DATABASE'),
-        entities: [],
+        entities: [
+          __dirname + '/src/**/*.entity.{ts,js}',
+          __dirname + 'src/modules/**/**/entities/*.entity{.ts,.js}',
+          __dirname + 'src/modules/**/*.view-entity{.ts,.js}',
+        ], 
+        migrations: ['src/migrations/*{.ts,.js}'],
         synchronize: false,
       }),
     }),
