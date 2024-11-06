@@ -2,6 +2,7 @@
 
 ## 1. About this project:
 - This Project use these technologies: ***NestJS for Backend, NextJS for Frontend, MySQL for Database***
+- This Project uses Node version ***20.13.1***
 - This project contains folders:
     * ***mysql-db:*** This folder is for storing **.sql* files
     * ***nestjs-app:*** This folder is for *Backend Service Development*
