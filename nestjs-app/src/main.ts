@@ -1,10 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { initializeTransactionalContext } from 'typeorm-transactional';
 
 declare const module: any;
 
 async function bootstrap() {
+  // Initialize Transactional Context for typeorm
+  initializeTransactionalContext();
+
   // Get Running Port
   const port = process.env.NESTJS_APP_LOCAL_PORT;
 

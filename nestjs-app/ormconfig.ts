@@ -14,8 +14,8 @@ const option: DataSourceOptions & SeederOptions = {
   synchronize: false,
   entities: [
     __dirname + '/src/**/*.entity.{ts,js}',
-    __dirname + 'src/modules/**/**/entities/*.entity{.ts,.js}',
-    __dirname + 'src/modules/**/*.view-entity{.ts,.js}',
+    __dirname + '/src/modules/**/**/entities/*.entity{.ts,.js}',
+    __dirname + '/src/modules/**/*.view-entity{.ts,.js}',
   ],
   migrations: ['src/migrations/*{.ts,.js}'],
   migrationsRun: false,
