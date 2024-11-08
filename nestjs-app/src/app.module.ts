@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/users/user.module';
-import { addTransactionalDataSource, deleteDataSourceByName, getDataSourceByName } from 'typeorm-transactional';
+import { addTransactionalDataSource } from 'typeorm-transactional';
 import { DataSource } from 'typeorm';
 
 @Module({
@@ -14,9 +14,7 @@ import { DataSource } from 'typeorm';
       envFilePath: '../.env',
     }),
     TypeOrmModule.forRootAsync({
-      imports: [
-        UserModule,
-        ConfigModule],
+      imports: [UserModule, ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         name: 'default',
@@ -41,9 +39,9 @@ import { DataSource } from 'typeorm';
           throw new Error('Invalid Options Passed');
         }
 
-        console.log(options);
-
-        return Promise.resolve(addTransactionalDataSource(new DataSource(options)));
+        return Promise.resolve(
+          addTransactionalDataSource(new DataSource(options)),
+        );
       },
     }),
   ],

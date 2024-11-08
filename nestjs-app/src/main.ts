@@ -23,11 +23,12 @@ async function bootstrap() {
     .setTitle('Banking System')
     .setDescription('The Banking System API Description')
     .setVersion('1.0')
-    .addBearerAuth()  
+    .addBearerAuth()
     .addBasicAuth()
     .build();
 
-  const documentFactory = () => SwaggerModule.createDocument(app, swaggerConfig);
+  const documentFactory = () =>
+    SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api-docs', app, documentFactory);
 
   // Open Port
