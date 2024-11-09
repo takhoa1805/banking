@@ -6,6 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/users/user.module';
 import { addTransactionalDataSource } from 'typeorm-transactional';
 import { DataSource } from 'typeorm';
+import { AuthModule } from './modules/auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './modules/auth/services/guards/auth.guard';
 
 @Module({
   imports: [
@@ -14,7 +17,7 @@ import { DataSource } from 'typeorm';
       envFilePath: '../.env',
     }),
     TypeOrmModule.forRootAsync({
-      imports: [UserModule, ConfigModule],
+      imports: [UserModule, ConfigModule, AuthModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         name: 'default',
@@ -46,6 +49,12 @@ import { DataSource } from 'typeorm';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+  ],
 })
 export class AppModule {}
