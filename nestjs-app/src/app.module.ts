@@ -9,6 +9,7 @@ import { DataSource } from 'typeorm';
 import { AuthModule } from './modules/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './modules/auth/services/guards/auth.guard';
+import { RolesGuard } from './modules/auth/services/guards/roles.guard';
 
 @Module({
   imports: [
@@ -54,6 +55,10 @@ import { AuthGuard } from './modules/auth/services/guards/auth.guard';
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
     },
   ],
 })
