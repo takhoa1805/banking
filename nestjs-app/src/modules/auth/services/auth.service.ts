@@ -6,12 +6,13 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { UserLoginDto } from '../../users/domains/dtos/requests/user-login.dto';
-import { IUserService } from 'src/modules/users/services/user.service';
+import { IUserService } from '../../users/services/user.service';
 import { JwtService } from '@nestjs/jwt';
 import { AccessToken } from '../domains/dtos/responses/access-token.dto';
 
 export interface IAuthService {
   signIn(userLoginDto: UserLoginDto): Promise<AccessToken>;
+  validateSignIn(userLoginDto: UserLoginDto): Promise<boolean>;
 }
 
 @Injectable()
@@ -35,6 +36,25 @@ export class AuthService implements IAuthService {
       const token = await this.jwtService.signAsync(payload);
 
       return new AccessToken(token);
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      } else {
+        console.log(error);
+        throw new InternalServerErrorException(error);
+      }
+    }
+  }
+
+  async validateSignIn(userLoginDto: UserLoginDto): Promise<boolean> {
+    try {
+      const user = this.userService.getUserForAuth(userLoginDto);
+
+      if (!user) {
+        return false;
+      }
+
+      return true;
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;

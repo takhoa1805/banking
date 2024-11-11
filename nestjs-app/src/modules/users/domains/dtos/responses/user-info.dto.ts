@@ -1,4 +1,4 @@
-import { Role } from 'src/constants/role.constant';
+import { Role } from '../../../../../constants/role.constant';
 import { UserEntity } from '../../entities/user.entity';
 
 export class UserInfoDto {
