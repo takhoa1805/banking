@@ -13,6 +13,8 @@ import { RolesGuard } from './modules/auth/services/guards/roles.guard';
 
 @Module({
   imports: [
+    AuthModule,
+    UserModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '../.env',

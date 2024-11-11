@@ -21,7 +21,6 @@ export class UserRepository implements IUserRepository {
     const user = this.userRepository.findOne({
       where: {
         username: userLoginDto.username,
-        password: userLoginDto.password,
       },
     });
 

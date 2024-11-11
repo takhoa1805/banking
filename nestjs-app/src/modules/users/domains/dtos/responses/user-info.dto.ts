@@ -5,12 +5,14 @@ export class UserInfoDto {
   id: number;
   name: string;
   username: string;
+  password: string;
   role: Role;
 
   constructor(userEntity: UserEntity) {
     this.id = userEntity.id;
     this.name = userEntity.name;
     this.username = userEntity.name;
+    this.password = userEntity.password;
     this.role = userEntity.role;
   }
 }
