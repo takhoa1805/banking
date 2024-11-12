@@ -10,11 +10,18 @@ import { AuthModule } from './modules/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './modules/auth/services/guards/auth.guard';
 import { RolesGuard } from './modules/auth/services/guards/roles.guard';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+import { LoanModule } from './modules/loans/loan.module';
+import { AccountModule } from './modules/accounts/account.module';
+import { TransactionModule } from './modules/transactions/transaction.module';
 
 @Module({
   imports: [
     UserModule,
     AuthModule,
+    LoanModule,
+    AccountModule,
+    TransactionModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '../.env',
@@ -30,6 +37,7 @@ import { RolesGuard } from './modules/auth/services/guards/roles.guard';
         username: configService.get<string>('MYSQLDB_USER'),
         password: configService.get<string>('MYSQLDB_PASSWORD'),
         database: configService.get<string>('MYSQLDB_DATABASE'),
+        namingStrategy: new SnakeNamingStrategy(),
         entities: [
           __dirname + '/**/*.entity.{ts,js}',
           __dirname + '/modules/**/**/entities/*.entity{.ts,.js}',

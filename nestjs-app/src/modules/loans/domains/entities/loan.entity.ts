@@ -1,4 +1,3 @@
-import { Role } from '../../../../../src/constants/role.constant';
 import {
   Column,
   CreateDateColumn,
@@ -7,26 +6,24 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { LoanStatus } from '../../../../constants/loan-status.constant';
 
-@Entity('users')
-export class UserEntity {
+@Entity('loans')
+export class LoanEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ nullable: false })
-  name: string;
-
-  @Column({ nullable: false, unique: true })
-  username: string;
+  LoanAmount: number;
 
   @Column({ nullable: false })
-  password: string;
+  interestRate: number;
 
-  @Column({ nullable: true })
-  email: string;
+  @Column({ nullable: false })
+  term: number;
 
-  @Column({ type: 'enum', enum: Role, default: Role.USER, nullable: false })
-  role: Role;
+  @Column({ nullable: false })
+  status: LoanStatus;
 
   @CreateDateColumn({
     type: 'timestamp',

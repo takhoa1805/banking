@@ -4,6 +4,7 @@ import { Module } from '@nestjs/common';
 import { UserRepository } from './repositories/user.repository';
 import { UserService } from './services/user.service';
 import { UserController } from './controllers/user.controller';
+import { AuthService } from '../auth/services/auth.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([UserEntity])],
@@ -17,6 +18,10 @@ import { UserController } from './controllers/user.controller';
     {
       provide: 'IUserService',
       useClass: UserService,
+    },
+    {
+      provide: 'IAuthService',
+      useClass: AuthService,
     },
   ],
 })

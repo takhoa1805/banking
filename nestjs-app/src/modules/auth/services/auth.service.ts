@@ -1,4 +1,5 @@
 import {
+  forwardRef,
   HttpException,
   Inject,
   Injectable,
@@ -20,14 +21,16 @@ export interface IAuthService {
 @Injectable()
 export class AuthService implements IAuthService {
   constructor(
-    @Inject('IUserService')
+    @Inject(forwardRef(() => 'IUserService'))
     private readonly userService: IUserService,
     private jwtService: JwtService,
   ) {}
 
   async signIn(userLoginDto: UserLoginDto): Promise<AccessToken> {
     try {
-      const user = await this.userService.getUserForAuth(userLoginDto);
+      const user = await this.userService.getUserByUsername(
+        userLoginDto.username,
+      );
 
       if (!user) {
         throw new UnauthorizedException();

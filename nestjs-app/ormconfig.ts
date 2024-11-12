@@ -1,5 +1,6 @@
 import { DataSource, type DataSourceOptions } from 'typeorm';
 import { type SeederOptions } from 'typeorm-extension';
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 require('dotenv').config({ path: '../.env' });
@@ -12,6 +13,7 @@ const option: DataSourceOptions & SeederOptions = {
   password: process.env.MYSQLDB_PASSWORD,
   database: process.env.MYSQLDB_DATABASE,
   synchronize: false,
+  namingStrategy: new SnakeNamingStrategy(),
   entities: [
     __dirname + '/src/**/*.entity.{ts,js}',
     __dirname + '/src/modules/**/**/entities/*.entity{.ts,.js}',

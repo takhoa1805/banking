@@ -1,4 +1,3 @@
-import { Role } from '../../../../../src/constants/role.constant';
 import {
   Column,
   CreateDateColumn,
@@ -7,26 +6,25 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { AccountType } from '../../../../constants/account-types.constant';
+import { AccountStatus } from '../../../../constants/account-status.constant';
 
-@Entity('users')
-export class UserEntity {
+@Entity('accounts')
+export class AccountEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ nullable: false })
-  name: string;
-
-  @Column({ nullable: false, unique: true })
-  username: string;
+  accountNumber: string;
 
   @Column({ nullable: false })
-  password: string;
+  type: AccountType;
 
-  @Column({ nullable: true })
-  email: string;
+  @Column({ nullable: false })
+  currentBalance: number;
 
-  @Column({ type: 'enum', enum: Role, default: Role.USER, nullable: false })
-  role: Role;
+  @Column({ nullable: false })
+  status: AccountStatus;
 
   @CreateDateColumn({
     type: 'timestamp',
