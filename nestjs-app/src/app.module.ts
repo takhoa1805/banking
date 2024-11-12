@@ -13,14 +13,14 @@ import { RolesGuard } from './modules/auth/services/guards/roles.guard';
 
 @Module({
   imports: [
-    AuthModule,
     UserModule,
+    AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '../.env',
     }),
     TypeOrmModule.forRootAsync({
-      imports: [UserModule, ConfigModule, AuthModule],
+      imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         name: 'default',

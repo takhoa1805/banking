@@ -4,16 +4,19 @@ import { AuthController } from './controllers/auth.controller';
 import { AuthService } from './services/auth.service';
 import { JwtModule } from '@nestjs/jwt';
 
-// eslint-disable-next-line @typescript-eslint/no-require-imports
-// require('dotenv').config({ path: '../../../../.env' });
-
 @Module({
   imports: [
     UserModule,
-    JwtModule.register({
+    JwtModule.registerAsync({
       global: true,
-      secret: 'process.env.JWT_SECRET',
-      signOptions: { expiresIn: '300s' },
+      useFactory: async () => {
+        return {
+          secret: process.env.JWT_SECRET,
+          signOptions: {
+            expiresIn: process.env.JWT_EXPIRED,
+          },
+        };
+      },
     }),
   ],
   controllers: [AuthController],
