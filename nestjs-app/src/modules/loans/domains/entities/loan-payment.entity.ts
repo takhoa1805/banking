@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { LoanEntity } from './loan.entity';
 
 @Entity('loan_payments')
 export class LoanPaymentEntity {
@@ -22,4 +23,7 @@ export class LoanPaymentEntity {
 
   @Column({ nullable: true })
   paidDate: Date;
+
+  @ManyToOne(() => LoanEntity, (loan) => loan.loanPayment)
+  loan: LoanEntity;
 }

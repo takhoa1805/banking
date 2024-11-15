@@ -1,9 +1,11 @@
+import { AccountEntity } from '../../../accounts/domains/entities/account.entity';
 import { Role } from '../../../../../src/constants/role.constant';
 import {
   Column,
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -27,6 +29,9 @@ export class UserEntity {
 
   @Column({ type: 'enum', enum: Role, default: Role.USER, nullable: false })
   role: Role;
+
+  @OneToMany(() => AccountEntity, (account) => account.user)
+  account: AccountEntity[];
 
   @CreateDateColumn({
     type: 'timestamp',

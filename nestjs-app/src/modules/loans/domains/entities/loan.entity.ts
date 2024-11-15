@@ -3,10 +3,14 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { LoanStatus } from '../../../../constants/loan-status.constant';
+import { AccountEntity } from '../../../accounts/domains/entities/account.entity';
+import { LoanPaymentEntity } from './loan-payment.entity';
 
 @Entity('loans')
 export class LoanEntity {
@@ -24,6 +28,15 @@ export class LoanEntity {
 
   @Column({ nullable: false })
   status: LoanStatus;
+
+  @ManyToOne(() => AccountEntity, (account) => account.loan)
+  account: AccountEntity;
+
+  @OneToMany(
+    () => LoanPaymentEntity,
+    (loanPaymentEntity) => loanPaymentEntity.loan,
+  )
+  loanPayment: LoanPaymentEntity[];
 
   @CreateDateColumn({
     type: 'timestamp',
