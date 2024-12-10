@@ -8,7 +8,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { AccountType } from '../../../../constants/account-types.constant';
 import { AccountStatus } from '../../../../constants/account-status.constant';
 import { UserEntity } from '../../../users/domains/entities/user.entity';
 import { TransactionEntity } from '../../../transactions/domains/entities/transaction.entity';
@@ -21,9 +20,6 @@ export class AccountEntity {
 
   @Column({ nullable: false })
   accountNumber: string;
-
-  @Column({ nullable: false })
-  type: AccountType;
 
   @Column({ nullable: false })
   currentBalance: number;

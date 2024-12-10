@@ -18,7 +18,7 @@ export class LoanEntity {
   id: string;
 
   @Column({ nullable: false })
-  LoanAmount: number;
+  loanAmount: number;
 
   @Column({ nullable: false })
   interestRate: number;
@@ -26,10 +26,13 @@ export class LoanEntity {
   @Column({ nullable: false })
   term: number;
 
+  @Column({ nullable: true })
+  scheduledPaymentDate: Date;
+
   @Column({ nullable: false })
   status: LoanStatus;
 
-  @ManyToOne(() => AccountEntity, (account) => account.loan)
+  @ManyToOne(() => AccountEntity, (account) => account.loan, { cascade: true })
   account: AccountEntity;
 
   @OneToMany(
@@ -53,13 +56,4 @@ export class LoanEntity {
     type: 'timestamp',
   })
   deletedAt: Date;
-
-  @Column({ nullable: true })
-  createdBy: string;
-
-  @Column({ nullable: true })
-  updatedBy: string;
-
-  @Column({ nullable: true })
-  deletedBy: string;
 }

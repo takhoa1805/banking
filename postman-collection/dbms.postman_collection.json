@@ -1,0 +1,835 @@
+{
+	"info": {
+		"_postman_id": "61e0f9da-37e0-4372-9343-7c33f947d37b",
+		"name": "dbms",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40234734"
+	},
+	"item": [
+		{
+			"name": "create new user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ0NTFkZjllLWY0ZDYtNGY4Yi05MzkyLTNlYWJkMGQyZTNkMiIsIm5hbWUiOiJ2eG10IiwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMzY4NTY1MywiZXhwIjoxNzMzNzcyMDUzfQ.c9J-e3C-XtR0Qga5QqMVLQG1ZfZiYaftDdMomnfjSrk",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"sp13\",\r\n    \"username\": \"user13\",\r\n    \"password\": \"123456\",\r\n    \"role\": \"USER\",\r\n    \"email\": \"sp13@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"admin\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"user\",\r\n    \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update user",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ0NTFkZjllLWY0ZDYtNGY4Yi05MzkyLTNlYWJkMGQyZTNkMiIsIm5hbWUiOiJ2eG10IiwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMzY4NjEyNCwiZXhwIjoxNzMzNzcyNTI0fQ.556GK53Qebw2BD3Watgo4u_WEckttatGKtVanq_VrS4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"91136c88-746a-40e4-b12c-ad104f1faea0\",\r\n    \"name\": \"spfix\",\r\n    \"email\": \"spfixdasdf\",\r\n    \"username\": \"user1333\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create account (admin)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOWRlZWUzLWI3MWUtMTFlZi04ZGFlLTAyNDJhYzEyMDAwMyIsIm5hbWUiOiJ2eG10LWFkbWluIiwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMzg1NTcxNiwiZXhwIjoxNzMzOTQyMTE2fQ.wO-44OqnAlbmzrQvh_mY0qpFAgkzj4XxJjGsGYnBo3Q",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"currentBalance\": 50000,\r\n    \"userId\": \"336fd503-b71e-11ef-8dae-0242ac120003\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create account (user)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMzNmZkNTAzLWI3MWUtMTFlZi04ZGFlLTAyNDJhYzEyMDAwMyIsIm5hbWUiOiJ2eG10LXVzZXIiLCJ1c2VybmFtZSI6InVzZXIiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTczMzg1NTk3MSwiZXhwIjoxNzMzOTQyMzcxfQ.DtY08xl1gjhYSwXMTb9_v0OrVckQQokmNuZL8LG-CUs",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"currentBalance\": 100000,\r\n    \"userId\": \"336fd503-b71e-11ef-8dae-0242ac120003\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create deposit transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMzNmZkNTAzLWI3MWUtMTFlZi04ZGFlLTAyNDJhYzEyMDAwMyIsIm5hbWUiOiJ2eG10LXVzZXIiLCJ1c2VybmFtZSI6InVzZXIiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTczMzg2MDM1NiwiZXhwIjoxNzMzOTQ2NzU2fQ.2mHnGsjbn-25Wld_q1nesl9qayTdP2Jh5KQs3HsOZQ0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"DEPOSIT\",\r\n    \"amount\": 6699,\r\n    \"description\": \"Deposit Money\",\r\n    \"accountNumber\": \"10000002\",\r\n    \"relatedAccountNumber\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/transactions/deposit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"transactions",
+						"deposit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create withdrawal transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMzNmZkNTAzLWI3MWUtMTFlZi04ZGFlLTAyNDJhYzEyMDAwMyIsIm5hbWUiOiJ2eG10LXVzZXIiLCJ1c2VybmFtZSI6InVzZXIiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTczMzg2MDM1NiwiZXhwIjoxNzMzOTQ2NzU2fQ.2mHnGsjbn-25Wld_q1nesl9qayTdP2Jh5KQs3HsOZQ0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"WITHDRAWAL\",\r\n    \"amount\": 6543,\r\n    \"description\": \"Withdrawal Money\",\r\n    \"accountNumber\": \"10000002\",\r\n    \"relatedAccountNumber\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/transactions/withdrawal",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"transactions",
+						"withdrawal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create transfer transaction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMzNmZkNTAzLWI3MWUtMTFlZi04ZGFlLTAyNDJhYzEyMDAwMyIsIm5hbWUiOiJ2eG10LXVzZXIiLCJ1c2VybmFtZSI6InVzZXIiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTczMzg2MDM1NiwiZXhwIjoxNzMzOTQ2NzU2fQ.2mHnGsjbn-25Wld_q1nesl9qayTdP2Jh5KQs3HsOZQ0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"type\": \"TRANSFER\",\r\n    \"amount\": 1611,\r\n    \"description\": \"Transfer Money\",\r\n    \"accountNumber\": \"10000003\",\r\n    \"relatedAccountNumber\": \"10000002\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/transactions/transfer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"transactions",
+						"transfer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create loans by admin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQwOWRlZWUzLWI3MWUtMTFlZi04ZGFlLTAyNDJhYzEyMDAwMyIsIm5hbWUiOiJ2eG10LWFkbWluIiwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMzg1NTcxNiwiZXhwIjoxNzMzOTQyMTE2fQ.wO-44OqnAlbmzrQvh_mY0qpFAgkzj4XxJjGsGYnBo3Q",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"loanAmount\": 123456,\r\n    \"interestRate\": 3,\r\n    \"term\": 1,\r\n    \"accountNUmber\": \"10000003\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/loans/admin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"loans",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create loans by user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjMzNmZkNTAzLWI3MWUtMTFlZi04ZGFlLTAyNDJhYzEyMDAwMyIsIm5hbWUiOiJ2eG10LXVzZXIiLCJ1c2VybmFtZSI6InVzZXIiLCJyb2xlIjoiVVNFUiIsImlhdCI6MTczMzg2MDM1NiwiZXhwIjoxNzMzOTQ2NzU2fQ.2mHnGsjbn-25Wld_q1nesl9qayTdP2Jh5KQs3HsOZQ0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"loanAmount\": 17423,\r\n    \"interestRate\": 3,\r\n    \"term\": 1,\r\n    \"accountNumber\": \"10000003\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/loans/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"loans",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "approve loan (admin)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ0NTFkZjllLWY0ZDYtNGY4Yi05MzkyLTNlYWJkMGQyZTNkMiIsIm5hbWUiOiJ2eG10IiwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMzgzMzM4NCwiZXhwIjoxNzMzOTE5Nzg0fQ.6Qe8o0hw4uxcLBkK7I8982wb9eW9OiRkMmLaDunxX3Y",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/loans/:id/approval",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"loans",
+						":id",
+						"approval"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3e32e188-853c-4d82-a5d2-c92fa62d15d1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "decline loan (admin)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ0NTFkZjllLWY0ZDYtNGY4Yi05MzkyLTNlYWJkMGQyZTNkMiIsIm5hbWUiOiJ2eG10IiwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMzgzMzM4NCwiZXhwIjoxNzMzOTE5Nzg0fQ.6Qe8o0hw4uxcLBkK7I8982wb9eW9OiRkMmLaDunxX3Y",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/loans/:id/decline",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"loans",
+						":id",
+						"decline"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "c71e6feb-bd78-41cb-9c7b-e016d620b829"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "close loan (admin)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ0NTFkZjllLWY0ZDYtNGY4Yi05MzkyLTNlYWJkMGQyZTNkMiIsIm5hbWUiOiJ2eG10IiwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMzgzMzM4NCwiZXhwIjoxNzMzOTE5Nzg0fQ.6Qe8o0hw4uxcLBkK7I8982wb9eW9OiRkMmLaDunxX3Y",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/loans/:id/close",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"loans",
+						":id",
+						"close"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "c71e6feb-bd78-41cb-9c7b-e016d620b829"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancel loan (admin)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ0NTFkZjllLWY0ZDYtNGY4Yi05MzkyLTNlYWJkMGQyZTNkMiIsIm5hbWUiOiJ2eG10IiwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTczMzgzMzM4NCwiZXhwIjoxNzMzOTE5Nzg0fQ.6Qe8o0hw4uxcLBkK7I8982wb9eW9OiRkMmLaDunxX3Y",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/loans/:id/cancellation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"loans",
+						":id",
+						"cancellation"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "c71e6feb-bd78-41cb-9c7b-e016d620b829"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cancel loan (user)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjODAxMTRkLTAzMTctNDQ4ZC1hZmRjLTg2ZTgwMGEyNmM0YiIsIm5hbWUiOiJzcGZpeCIsInVzZXJuYW1lIjoidXNlcjEzMyIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzMzODMzNTg4LCJleHAiOjE3MzM5MTk5ODh9.Jq4B075OAsca9MbJXwCiL1yTq_UHQ1hORy0EpdQGXVc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/loans/:id/cancellation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"loans",
+						":id",
+						"cancellation"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "c71e6feb-bd78-41cb-9c7b-e016d620b829"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get loan payment preview",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjODAxMTRkLTAzMTctNDQ4ZC1hZmRjLTg2ZTgwMGEyNmM0YiIsIm5hbWUiOiJzcGZpeCIsInVzZXJuYW1lIjoidXNlcjEzMyIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzMzODMzNTg4LCJleHAiOjE3MzM5MTk5ODh9.Jq4B075OAsca9MbJXwCiL1yTq_UHQ1hORy0EpdQGXVc",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/loan-payments/:id/preview?paid-amount=9754",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"loan-payments",
+						":id",
+						"preview"
+					],
+					"query": [
+						{
+							"key": "paid-amount",
+							"value": "9754"
+						}
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "a222cf53-df16-4589-b0e5-c9b39fe620fc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create loan payment",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjODAxMTRkLTAzMTctNDQ4ZC1hZmRjLTg2ZTgwMGEyNmM0YiIsIm5hbWUiOiJzcGZpeCIsInVzZXJuYW1lIjoidXNlcjEzMyIsInJvbGUiOiJVU0VSIiwiaWF0IjoxNzMzODMzNTg4LCJleHAiOjE3MzM5MTk5ODh9.Jq4B075OAsca9MbJXwCiL1yTq_UHQ1hORy0EpdQGXVc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"totalPaymentAmount\": 127160,\r\n    \"principalAmount\": 123456,\r\n    \"interestAmount\": 3704,\r\n    \"paidAmount\": 25433,\r\n    \"loanId\": \"a222cf53-df16-4589-b0e5-c9b39fe620fc\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/loan-payments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"loan-payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "active account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/accounts/:id/active",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts",
+						":id",
+						"active"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "close account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/accounts/:id/close",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts",
+						":id",
+						"close"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "suspend account",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/accounts/:id/suspend",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts",
+						":id",
+						"suspend"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users?page=0&size=5&sort=name:desc&filter=name:like:vx",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "0"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						},
+						{
+							"key": "sort",
+							"value": "name:desc"
+						},
+						{
+							"key": "filter",
+							"value": "name:like:vx"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get transactions by account number",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/transactions?account-number=10000002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "account-number",
+							"value": "10000002"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get loans by account number Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/loans?account-number=10000002",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"loans"
+					],
+					"query": [
+						{
+							"key": "account-number",
+							"value": "10000002"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get loan payments by loan id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/loan-payments?loan-id=a222cf53-df16-4589-b0e5-c9b39fe620fc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"loan-payments"
+					],
+					"query": [
+						{
+							"key": "loan-id",
+							"value": "a222cf53-df16-4589-b0e5-c9b39fe620fc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get accounts by user id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/accounts?user-id=336fd503-b71e-11ef-8dae-0242ac120003",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accounts"
+					],
+					"query": [
+						{
+							"key": "user-id",
+							"value": "336fd503-b71e-11ef-8dae-0242ac120003"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

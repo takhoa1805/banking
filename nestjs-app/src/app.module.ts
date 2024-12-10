@@ -14,6 +14,7 @@ import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
 import { LoanModule } from './modules/loans/loan.module';
 import { AccountModule } from './modules/accounts/account.module';
 import { TransactionModule } from './modules/transactions/transaction.module';
+import { CommonModule } from './modules/common/common.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { TransactionModule } from './modules/transactions/transaction.module';
     LoanModule,
     AccountModule,
     TransactionModule,
+    CommonModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '../.env',

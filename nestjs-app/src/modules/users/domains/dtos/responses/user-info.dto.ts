@@ -7,6 +7,7 @@ export class UserInfoDto {
   username: string;
   password: string;
   role: Role;
+  createAt: Date;
 
   constructor(userEntity: UserEntity) {
     this.id = userEntity.id;
@@ -14,5 +15,6 @@ export class UserInfoDto {
     this.username = userEntity.username;
     this.password = userEntity.password;
     this.role = userEntity.role;
+    this.createAt = userEntity.createdAt;
   }
 }

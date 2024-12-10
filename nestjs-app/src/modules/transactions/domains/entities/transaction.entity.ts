@@ -1,6 +1,7 @@
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -19,12 +20,27 @@ export class TransactionEntity {
   @Column({ nullable: false })
   amount: number;
 
-  @ManyToOne(() => AccountEntity, (account) => account.transaction)
+  @Column({ nullable: false })
+  description: string;
+
+  @ManyToOne(() => AccountEntity, (account) => account.transaction, {
+    cascade: true,
+  })
   account: AccountEntity;
+
+  @ManyToOne(() => AccountEntity, (account) => account.transaction, {
+    onUpdate: 'CASCADE',
+  })
+  relatedAccount: AccountEntity;
 
   @CreateDateColumn({
     type: 'timestamp',
     default: () => 'CURRENT_TIMESTAMP(6)',
   })
   createdAt: Date;
+
+  @DeleteDateColumn({
+    type: 'timestamp',
+  })
+  deletedAt: Date;
 }

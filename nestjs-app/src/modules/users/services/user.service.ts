@@ -18,10 +18,19 @@ import { JwtService } from '@nestjs/jwt';
 import { PasswordChangeDto } from '../domains/dtos/requests/password-change.dto';
 import { UserEntity } from '../domains/entities/user.entity';
 import { AuthPayload } from '../../auth/domains/interfaces/auth-payload.interface';
+import { Pagination } from '../../../decorators/pagination-params.decorator';
+import { Sorting } from '../../../decorators/sorting-params.decorator';
+import { Filtering } from '../../../decorators/filtering-params.decorator';
+import { PaginatedResource } from '../../common/types/paginated-resource.dto';
 
 export interface IUserService {
   getUserByUsername(username: string): Promise<UserInfoDto | null>;
-  getUserById(id: string): Promise<UserEntity>;
+  getUserEntityById(id: string, relations?: string[]): Promise<UserEntity>;
+  getUsers(
+    paginationParams: Pagination,
+    sort?: Sorting,
+    filter?: Filtering,
+  ): Promise<PaginatedResource<UserInfoDto>>;
   createUser(
     userId: string,
     userCreationDto: UserCreationDto,
@@ -60,15 +69,43 @@ export class UserService implements IUserService {
     }
   }
 
-  async getUserById(id: string): Promise<UserEntity> {
+  async getUserEntityById(
+    id: string,
+    relations?: string[],
+  ): Promise<UserEntity> {
     try {
-      const user = await this.userRepository.findUserById(id);
+      const user = await this.userRepository.findUserById(id, relations);
 
       if (!user) {
         throw new NotFoundException('Not found user');
       }
 
       return user;
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      } else {
+        throw new InternalServerErrorException(error);
+      }
+    }
+  }
+
+  async getUsers(
+    paginationParams: Pagination,
+    sort?: Sorting,
+    filter?: Filtering,
+  ): Promise<PaginatedResource<UserInfoDto>> {
+    try {
+      const result = await this.userRepository.findUsers(
+        paginationParams,
+        sort,
+        filter,
+      );
+
+      return {
+        ...result,
+        items: result.items.map((user) => new UserInfoDto(user)),
+      };
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
@@ -131,7 +168,7 @@ export class UserService implements IUserService {
 
         const user = isUsernameExist
           ? { ...isUsernameExist }
-          : await this.getUserById(userUpdateDto.id);
+          : await this.getUserEntityById(userUpdateDto.id);
 
         const updateInfo = {
           ...user,
@@ -166,7 +203,7 @@ export class UserService implements IUserService {
 
           const user = isUsernameExist
             ? { ...isUsernameExist }
-            : await this.getUserById(userUpdateDto.id);
+            : await this.getUserEntityById(userUpdateDto.id);
 
           const updateInfo = {
             ...user,
@@ -208,7 +245,7 @@ export class UserService implements IUserService {
   ): Promise<UserInfoDto> {
     try {
       if (userPayload.role === 'ADMIN') {
-        const user = await this.getUserById(newPasswordDto.id);
+        const user = await this.getUserEntityById(newPasswordDto.id);
 
         const newHashedPassword = await this.authService.hashPassword(
           newPasswordDto.password,
@@ -226,7 +263,7 @@ export class UserService implements IUserService {
         if (userPayload.id !== newPasswordDto.id) {
           throw new ForbiddenException();
         } else {
-          const user = await this.getUserById(newPasswordDto.id);
+          const user = await this.getUserEntityById(newPasswordDto.id);
 
           const newHashedPassword = await this.authService.hashPassword(
             newPasswordDto.password,
