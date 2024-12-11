@@ -1,12 +1,12 @@
 # BANKING SYSTEM PROJECT - DBMS ASSIGNMENT
 
 ## 1. About this project:
-- This Project use these technologies: ***NestJS for Backend, NextJS for Frontend, MySQL for Database***
+- This Project use these technologies: ***NestJS for Backend, Vite + React TypeScript for Frontend, MySQL for Database***
 - This Project uses Node version ***20.13.1***
 - This project contains folders:
     * ***mysql-db:*** This folder is for storing **.sql* files
     * ***nestjs-app:*** This folder is for *Backend Service Development*
-    * ***nextjs-app:*** This folder is for *Frontend Service Development* 
+    * ***react-app:*** This folder is for *Frontend Service Development* 
 - In the root directory:
     * ***.env.example:*** This file is an example of *.env* file
     * ***docker-compose.yml:*** This file is used for setting up development environment
@@ -52,7 +52,7 @@ npm run start:dev
 npm run start:back
 ```
 ## 2.2. Run Frontend Project
-- Open ***nextjs-app*** in your Terminal, run script
+- Open ***react-app*** in your Terminal, run script
 ```
 npm install
 ```
