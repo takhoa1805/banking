@@ -25,6 +25,18 @@ services:
     networks:
       - default
 
+  cassandra:
+    container_name: cassandra
+    image: cassandra:latest
+    ports:
+      - "9042:9042"
+    environment:
+      - CASSANDRA_USER=admin
+      - CASSANDRA_PASSWORD=123456
+    volumes:
+      - cassandra-volume:/var/lib/cassandra
+    networks:
+      - default
   # nestjs-app:
   #   container_name: nestjs-app
   #   depends_on:
@@ -82,4 +94,5 @@ services:
 
 volumes:
   mysql-volume:
+  cassandra-volume:
  
