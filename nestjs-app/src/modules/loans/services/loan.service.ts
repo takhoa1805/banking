@@ -13,6 +13,10 @@ import { LoanCreationDto } from '../domains/dtos/requests/loan-creation.dto';
 import { IAccountService } from '../../accounts/services/account.service';
 import { LoanStatus } from '../../../constants/loan-status.constant';
 import { Role } from '../../../constants/role.constant';
+import { PaginatedResource } from '../../common/types/paginated-resource.dto';
+import { Sorting } from '../../../decorators/sorting-params.decorator';
+import { Filtering } from '../../../decorators/filtering-params.decorator';
+import { Pagination } from '../../../decorators/pagination-params.decorator';
 
 export interface ILoanService {
   getLoanById(loanId: string): Promise<LoanInfoDto>;
@@ -24,6 +28,11 @@ export interface ILoanService {
   declineLoanRequest(loanId: string): Promise<LoanInfoDto>;
   cancelLoanRequest(loanId: string, role: Role): Promise<LoanInfoDto>;
   closeLoanRequest(loanId: string): Promise<LoanInfoDto>;
+  getLoans(
+    paginationParams: Pagination,
+    sort?: Sorting,
+    filter?: Filtering,
+  ): Promise<PaginatedResource<LoanInfoDto>>;
 }
 
 @Injectable()
@@ -65,6 +74,31 @@ export class LoanService implements ILoanService {
       }
 
       return loan;
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      } else {
+        throw new InternalServerErrorException(error);
+      }
+    }
+  }
+
+  async getLoans(
+    paginationParams: Pagination,
+    sort?: Sorting,
+    filter?: Filtering,
+  ): Promise<PaginatedResource<LoanInfoDto>> {
+    try {
+      const result = await this.loanRepository.findLoans(
+        paginationParams,
+        sort,
+        filter,
+      );
+
+      return {
+        ...result,
+        items: result.items.map((loan) => new LoanInfoDto(loan)),
+      };
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;

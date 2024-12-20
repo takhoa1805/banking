@@ -6,6 +6,11 @@ import { LoanCreationDto } from '../domains/dtos/requests/loan-creation.dto';
 import { AccountEntity } from '../../accounts/domains/entities/account.entity';
 import { ICommonService } from '../../common/services/common.service';
 import { LoanStatus } from '../../../constants/loan-status.constant';
+import { Pagination } from '../../../decorators/pagination-params.decorator';
+import { Sorting } from '../../../decorators/sorting-params.decorator';
+import { Filtering } from '../../../decorators/filtering-params.decorator';
+import { PaginatedResource } from '../../common/types/paginated-resource.dto';
+import { getOrder, getWhere } from '../../../helpers/typeorm.helper';
 
 export interface ILoanRepository {
   findLoanById(
@@ -22,6 +27,11 @@ export interface ILoanRepository {
     loanStatus: LoanStatus,
     accountEntity?: AccountEntity,
   ): Promise<LoanEntity>;
+  findLoans(
+    paginationParams: Pagination,
+    sort?: Sorting,
+    filter?: Filtering,
+  ): Promise<PaginatedResource<LoanEntity>>;
 }
 
 @Injectable()
@@ -58,6 +68,30 @@ export class LoanRepository implements ILoanRepository {
     });
 
     return loans;
+  }
+
+  async findLoans(
+    paginationParams: Pagination,
+    sort?: Sorting,
+    filter?: Filtering,
+  ): Promise<PaginatedResource<LoanEntity>> {
+    const { page, limit, size, offset } = paginationParams;
+    const where = getWhere(filter);
+    const order = getOrder(sort);
+
+    const [loans, total] = await this.loanRepository.findAndCount({
+      where,
+      order,
+      take: limit,
+      skip: offset,
+    });
+
+    return {
+      totalItems: total,
+      items: loans,
+      page,
+      size,
+    };
   }
 
   async createLoan(

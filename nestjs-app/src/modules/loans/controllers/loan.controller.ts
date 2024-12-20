@@ -15,6 +15,19 @@ import { Role } from '../../../constants/role.constant';
 import { AuthPayload } from '../../auth/domains/interfaces/auth-payload.interface';
 import { User } from '../../../decorators/user-payload.decorator';
 import { PublicRoute } from '../../../decorators/public-route.decorator';
+import {
+  Pagination,
+  PaginationParams,
+} from '../../../decorators/pagination-params.decorator';
+import {
+  Sorting,
+  SortingParams,
+} from '../../../decorators/sorting-params.decorator';
+import {
+  Filtering,
+  FilteringParams,
+} from '../../../decorators/filtering-params.decorator';
+import { PaginatedResource } from '../../common/types/paginated-resource.dto';
 
 @Controller('loans')
 export class LoanController {
@@ -22,6 +35,16 @@ export class LoanController {
     @Inject('ILoanService')
     private readonly loanService: ILoanService,
   ) {}
+
+  @Roles(Role.ADMIN)
+  @Get()
+  async getLoans(
+    @PaginationParams() paginationParams: Pagination,
+    @SortingParams(['id', 'createat', 'status']) sort?: Sorting,
+    @FilteringParams(['status']) filter?: Filtering,
+  ): Promise<PaginatedResource<LoanInfoDto>> {
+    return this.loanService.getLoans(paginationParams, sort, filter);
+  }
 
   @Roles(Role.ADMIN)
   @Post('admin')
