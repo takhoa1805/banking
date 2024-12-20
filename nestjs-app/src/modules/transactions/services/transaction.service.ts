@@ -12,6 +12,9 @@ import { AccountService } from '../../accounts/services/account.service';
 import { TransactionEntity } from '../domains/entities/transaction.entity';
 import { TransactionCreationDto } from '../domains/dtos/requests/transaction-creation.dto';
 import { TransactionType } from '../../../constants/transaction-types.constant';
+import { Pagination } from '../../../decorators/pagination-params.decorator';
+import { Sorting } from '../../../decorators/sorting-params.decorator';
+import { PaginatedResource } from '../../common/types/paginated-resource.dto';
 
 export interface ITransactionService {
   getTransactionById(transactionId: string): Promise<TransactionInfoDto>;
@@ -21,7 +24,9 @@ export interface ITransactionService {
   ): Promise<TransactionEntity>;
   getTransactionsByAccountNumber(
     accountNumber: string,
-  ): Promise<TransactionInfoDto[]>;
+    paginationParams: Pagination,
+    sort?: Sorting,
+  ): Promise<PaginatedResource<TransactionInfoDto>>;
   createWithdrawalTransaction(
     transactionCreationDto: TransactionCreationDto,
   ): Promise<TransactionInfoDto>;
@@ -94,7 +99,9 @@ export class TransactionService implements ITransactionService {
 
   async getTransactionsByAccountNumber(
     accountNumber: string,
-  ): Promise<TransactionInfoDto[]> {
+    paginationParams: Pagination,
+    sort?: Sorting,
+  ): Promise<PaginatedResource<TransactionInfoDto>> {
     try {
       const account =
         await this.accountService.getAccountEntityByAccountNumber(
@@ -107,14 +114,19 @@ export class TransactionService implements ITransactionService {
         );
       }
 
-      const transactions =
+      const result =
         await this.transactionRepository.findTransactionsByAccountNumber(
           accountNumber,
+          paginationParams,
+          sort,
         );
 
-      return transactions.map(
-        (transaction) => new TransactionInfoDto(transaction),
-      );
+      return {
+        ...result,
+        items: result.items.map(
+          (transaction) => new TransactionInfoDto(transaction),
+        ),
+      };
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;

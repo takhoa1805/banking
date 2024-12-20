@@ -4,6 +4,10 @@ import { TransactionEntity } from '../domains/entities/transaction.entity';
 import { Repository } from 'typeorm';
 import { TransactionCreationDto } from '../domains/dtos/requests/transaction-creation.dto';
 import { AccountEntity } from '../../accounts/domains/entities/account.entity';
+import { Pagination } from '../../../decorators/pagination-params.decorator';
+import { Sorting } from '../../../decorators/sorting-params.decorator';
+import { PaginatedResource } from '../../common/types/paginated-resource.dto';
+import { getOrder } from '../../../helpers/typeorm.helper';
 
 export interface ITransactionRepository {
   findTransactionById(
@@ -12,7 +16,9 @@ export interface ITransactionRepository {
   ): Promise<TransactionEntity | null>;
   findTransactionsByAccountNumber(
     accountNumber: string,
-  ): Promise<TransactionEntity[]>;
+    paginationParams: Pagination,
+    sort?: Sorting,
+  ): Promise<PaginatedResource<TransactionEntity>>;
   createWithdrawalTransaction(
     transactionCreationDto: TransactionCreationDto,
     account: AccountEntity,
@@ -55,17 +61,32 @@ export class TransactionRepository implements ITransactionRepository {
 
   async findTransactionsByAccountNumber(
     accountNumber: string,
-  ): Promise<TransactionEntity[]> {
-    const transactions = await this.transactionRepository.find({
-      where: {
-        account: {
-          accountNumber: accountNumber,
-        },
-      },
-      relations: ['account'],
-    });
+    paginationParams: Pagination,
+    sort?: Sorting,
+  ): Promise<PaginatedResource<TransactionEntity>> {
+    const { page, limit, size, offset } = paginationParams;
+    const order = getOrder(sort);
 
-    return transactions;
+    const [transactions, total] = await this.transactionRepository.findAndCount(
+      {
+        where: {
+          account: {
+            accountNumber: accountNumber,
+          },
+        },
+        order,
+        take: limit,
+        skip: offset,
+        relations: ['account', 'relatedAccount'],
+      },
+    );
+
+    return {
+      totalItems: total,
+      items: transactions,
+      page,
+      size,
+    };
   }
 
   async createWithdrawalTransaction(

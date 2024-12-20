@@ -3,6 +3,15 @@ import { ITransactionService } from '../services/transaction.service';
 import { TransactionCreationDto } from '../domains/dtos/requests/transaction-creation.dto';
 import { TransactionInfoDto } from '../domains/dtos/responses/transaction-info.dto';
 import { PublicRoute } from '../../../decorators/public-route.decorator';
+import { PaginatedResource } from '../../common/types/paginated-resource.dto';
+import {
+  Pagination,
+  PaginationParams,
+} from '../../../decorators/pagination-params.decorator';
+import {
+  Sorting,
+  SortingParams,
+} from '../../../decorators/sorting-params.decorator';
 
 @Controller('transactions')
 export class TransactionController {
@@ -15,9 +24,13 @@ export class TransactionController {
   @Get()
   async getTransactionsByAccountNumber(
     @Query('account-number') accountNumber: string,
-  ): Promise<TransactionInfoDto[]> {
+    @PaginationParams() paginationParams: Pagination,
+    @SortingParams(['amount', 'createdat']) sort?: Sorting,
+  ): Promise<PaginatedResource<TransactionInfoDto>> {
     return await this.transactionService.getTransactionsByAccountNumber(
       accountNumber,
+      paginationParams,
+      sort,
     );
   }
 

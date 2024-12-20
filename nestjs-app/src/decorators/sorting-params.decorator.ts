@@ -30,6 +30,9 @@ export const SortingParams = createParamDecorator(
     if (!validParams.includes(property))
       throw new BadRequestException(`Invalid sort property: ${property}`);
 
-    return { property, direction };
+    return {
+      property: property == 'createdat' ? 'createdAt' : property,
+      direction,
+    };
   },
 );

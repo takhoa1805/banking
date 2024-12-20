@@ -36,7 +36,7 @@ export class UserController {
   @Get()
   async getUsers(
     @PaginationParams() paginationParams: Pagination,
-    @SortingParams(['name', 'role', 'id']) sort?: Sorting,
+    @SortingParams(['name', 'role', 'id', 'createdat']) sort?: Sorting,
     @FilteringParams(['name', 'role', 'id']) filter?: Filtering,
   ): Promise<PaginatedResource<UserInfoDto>> {
     return await this.userService.getUsers(paginationParams, sort, filter);
