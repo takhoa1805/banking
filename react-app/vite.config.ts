@@ -9,11 +9,11 @@ export default defineConfig({
     port: 4000
   },
   css: {
-    devSourcemap: true,
+    devSourcemap: true
   },
   resolve: {
     alias: {
-      '~': path.resolve(__dirname, "./src")
+      '@': path.resolve(__dirname, './src')
     }
   }
 })
