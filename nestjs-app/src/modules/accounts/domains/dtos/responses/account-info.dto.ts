@@ -6,6 +6,7 @@ export class AccountInfoDto {
   currentBalance: number;
   status: AccountStatus;
   createAt: Date;
+  accountName?: string;
   accountOwnerId?: string;
 
   constructor(accountEntity: AccountEntity) {
@@ -13,6 +14,7 @@ export class AccountInfoDto {
     this.currentBalance = accountEntity.currentBalance;
     this.status = accountEntity.status;
     this.createAt = accountEntity.createdAt;
+    this.accountName = accountEntity.user?.name;
     this.accountOwnerId = accountEntity.user?.id;
   }
 }
