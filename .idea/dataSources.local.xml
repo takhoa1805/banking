@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal" created-in="DB-251.23774.426">
+    <data-source name="@localhost" uuid="897107a5-f6e9-406b-a1f7-d5435ac36625">
+      <database-info product="Cassandra" version="5.0.4" jdbc-version="4.0" driver-name="Cassandra JDBC Driver" driver-version="4.12.0-DataGrip-patch-2" dbms="CASSANDRA" exact-version="5.0.4" exact-driver-version="4.12" />
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>admin</user-name>
+      <schema-mapping>
+        <introspection-scope>
+          <node kind="schema">
+            <name qname="@" />
+            <name qname="store" />
+            <name qname="dbms" />
+          </node>
+        </introspection-scope>
+      </schema-mapping>
+    </data-source>
+  </component>
+</project>
