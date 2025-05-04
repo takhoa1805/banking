@@ -21,7 +21,7 @@ cp .env.example .env
 ```
 ## 2.1. Run Backend Project
 ### 2.1.1. Run Database
-- Open ***.env*** file and edit ***"MYSQLDB_USER"*** and ***"MYSQLDB_PASSWORD"*** as you want
+- Open ***.env*** file and edit ***"POSTGRESQLDB_USER"*** and ***"POSTGRESQLDB_PASSWORD"*** as you want
 - Then run this script:
 ```
 npm run start:db
