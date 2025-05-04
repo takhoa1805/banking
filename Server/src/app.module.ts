@@ -33,7 +33,7 @@ import { CommonModule } from './modules/common/common.module';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         name: 'default',
-        type: 'mysql',
+        type: 'postgres',
         host: configService.get<string>('POSTGRESQLDB_HOST'),
         port: configService.get<number>('POSTGRESQLDB_LOCAL_PORT'),
         username: configService.get<string>('POSTGRESQLDB_USER'),

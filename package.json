@@ -3,11 +3,11 @@
     "version": "1.0.0",
     "description": "An Assignment for DBMS",
     "scripts": {
-        "build:back": "docker compose build nestjs-app",
-        "build:front": "docker compose build nextjs-app",
-        "start:db": "docker compose up mysql-db adminer",
-        "start:back": "cd nestjs-app && npm run start:dev",
-        "start:front": "cd react-app && npm run dev",
+        "build:back": "docker compose build Server",
+        "build:front": "docker compose build Client",
+        "start:db": "docker compose up postgres",
+        "start:back": "cd Server && npm run start:dev",
+        "start:front": "cd Client && npm run dev",
         "clean": "docker compose down -v"
     },
     "author": "vxmtrung",
